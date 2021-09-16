@@ -1,0 +1,40 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="{{columnsToDisplay[i]}}" *ngFor="let column of columnsToIterate; let i = index">
+      <th mat-header-cell *matHeaderCellDef> {{columnsToDisplay[i]}} </th>
+      <td id="row{{element.id}}" mat-cell *matCellDef="let element" (click)="clicked(element.id)" (dblclick)="doubleClickedWithData(element)"> 
+        {{(column === 'startDate' || column === 'endDate' || column === 'deadline') ? (element[column] | date:'short') : 
+        ((column ==='parterPrice' || column === 'eastPrice' || column === 'westPrice' || column === 'northPrice' || column === 'southPrice' || column === 'vipPrice' || column === 'seatPriceRsd') ? (element[column] | currency:'RSD') :
+        (column === 'active' ? (element[column] | yesNo) : element[column]))}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef > </th>
+      <td mat-cell *matCellDef="let element">  <button mat-raised-button color="accent" (click)="details(element.id)" id="{{element.id}}">Details</button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="reservationsByEvent">
+      <th mat-header-cell *matHeaderCellDef > </th>
+      <td mat-cell *matCellDef="let element">  <button  *ngIf="role === 'admin'" mat-raised-button color="accent" (click)="reservationsByEvent(element.id)" id="{{element.id}}">Reservations</button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="updateEvent">
+      <th mat-header-cell *matHeaderCellDef > </th>
+      <td mat-cell *matCellDef="let element">  <button  *ngIf="role === 'admin'" mat-raised-button color="accent" (click)="updateEvent(element.id)" id="{{element.id}}">Update</button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="cancelReservation">
+      <th mat-header-cell *matHeaderCellDef > </th>
+      <td mat-cell *matCellDef="let element">  <button  *ngIf="role === 'user'" mat-raised-button color="accent" (click)="cancelReservation(element)" id="{{element}}">Cancel</button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef > </th>
+      <td mat-cell *matCellDef="let element">  <button  *ngIf="role === 'admin'" mat-raised-button color="accent" (click)="deleted(element.id)" id="{{element.id}}">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+  </table>
+</div>

@@ -1,0 +1,18 @@
+<h1 class="mat-display-1;" style="text-align: center;  margin-top: 1%;">Reservations</h1>
+<mat-spinner style="margin-left: 49%; margin-bottom: 1%" [diameter]="30" *ngIf="loader"></mat-spinner>
+<mat-divider></mat-divider>
+<br><br>
+<div style="padding-left: 1%;padding-right: 1%">
+    <app-table style="font-size:2px;" [dataSource]="reservations.content" [columnsToDisplay]="['User', 'Event', 'Start', 'End', 'Reservation deadline', 'Price (RSD)', 
+    'Seat', ' ']" 
+    [columnsToIterate]="['email', 'eventName', 'startDate', 'endDate', 'deadline', 'seatPriceRsd', 'seatNum', 'active']"></app-table>
+
+    <app-pagination [pageSize]="pageSize"
+                [totalItems]="reservations.totalElements"
+                [totalPages]="reservations.totalPages"
+                [currentPage]="reservations.number"
+                (ChangePage)="onPagination($event)"
+    ></app-pagination>
+    
+</div>
+

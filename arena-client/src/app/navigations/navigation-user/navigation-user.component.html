@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+
+    <mat-icon class="make-cursor" (click)="router.navigateByUrl('/user')" [ngStyle]="{'color':'white'}">
+      book_online
+    </mat-icon>
+    <span class="make-cursor" (click)="router.navigateByUrl('/user')" style="padding-left: 0.5%; font-size: medium;">Arena</span>
+    <span style="padding-left: 1%;"></span>
+    <span style="padding-left: 2%;">
+      <button (click)="router.navigate(['/user/view-events']);" mat-button>Events</button>
+    </span>
+    <span style="padding-left: 2%;">
+      <button (click)="router.navigate(['/user/view-reservations']);" mat-button>Reservations</button>
+    </span>
+  
+    <span class="example-spacer" style="width: 75%"></span>
+    <a (click)="router.navigateByUrl('/user/view-profile')" style="margin-left: 5%;">
+      <button mat-flat-button color="primary">
+        <mat-icon [ngStyle]="{'color':'white'}">
+          face
+        </mat-icon>
+      </button>
+    </a>
+    <a routerLink="/" style="margin-left: 1%;">
+      <button mat-flat-button color="primary">
+        <mat-icon (click)="logOutUser()" [ngStyle]="{'color':'white'}">
+          logout
+        </mat-icon>
+      </button>
+    </a>
+  </mat-toolbar>
+  

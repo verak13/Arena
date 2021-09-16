@@ -1,0 +1,100 @@
+<h1 *ngIf="eventId == null" class="mat-display-1;" style="text-align: center;  margin-top: 1%;">New Event</h1>
+<h1 *ngIf="eventId != null" class="mat-display-1;" style="text-align: center;  margin-top: 1%;">Update Event</h1>
+<mat-spinner style="margin-left: 49%; margin-bottom: 1%" [diameter]="30" *ngIf="loader"></mat-spinner>
+<mat-divider></mat-divider>
+<br><br>
+<div style="display: block; text-align: center; margin: 3%;">
+    <form [formGroup]="form" name="form" (ngSubmit)="submit()" style="display: inline-block; width: 100%">
+
+        <mat-form-field name="form-field-name" [style.width.%]="60">
+            <mat-label for="name">Name:</mat-label>
+            <input matInput id="name" name="name" placeholder="Name:" [formControl]="form.controls.name">
+            <mat-error *ngIf="form.controls.name.touched && form.controls.name.errors?.required">
+            This field can't be empty!</mat-error >
+        </mat-form-field>
+
+        <mat-form-field name="form-field-description" [style.width.%]="60">
+            <mat-label for="description">Description:</mat-label>
+            <input matInput id="description" name="description" placeholder="Description:" [formControl]="form.controls.description">
+            <mat-error *ngIf="form.controls.description.touched && form.controls.description.errors?.required">
+            This field can't be empty!</mat-error >
+        </mat-form-field>
+
+        <div style="display: block;">
+        <mat-form-field name="form-field-parterPrice" [style.width.%]="9" style="margin-right: 1%;">
+            <mat-label for="parterPrice">Parter price(RSD):</mat-label>
+            <input matInput id="parterPrice" name="parterPrice" placeholder="Parter price(RSD):" [formControl]="form.controls.parterPrice">
+            <mat-error *ngIf="form.controls.parterPrice.touched && form.controls.parterPrice.errors?.required">
+            This field can't be empty!</mat-error >
+        </mat-form-field>
+        <mat-form-field name="form-field-westPrice" [style.width.%]="9" style="margin-right: 1%;">
+            <mat-label for="westPrice">West price(RSD):</mat-label>
+            <input matInput id="westPrice" name="westPrice" placeholder="West price(RSD):" [formControl]="form.controls.westPrice">
+            <mat-error *ngIf="form.controls.westPrice.touched && form.controls.westPrice.errors?.required">
+            This field can't be empty!</mat-error >
+        </mat-form-field>
+        <mat-form-field name="form-field-eastPrice" [style.width.%]="9" style="margin-right: 1%;">
+            <mat-label for="eastPrice">East price(RSD):</mat-label>
+            <input matInput id="eastPrice" name="eastPrice" placeholder="East price(RSD):" [formControl]="form.controls.eastPrice">
+            <mat-error *ngIf="form.controls.eastPrice.touched && form.controls.eastPrice.errors?.required">
+            This field can't be empty!</mat-error >
+        </mat-form-field>
+        <mat-form-field name="form-field-southPrice" [style.width.%]="9" style="margin-right: 1%;">
+            <mat-label for="southPrice">South price(RSD):</mat-label>
+            <input matInput id="southPrice" name="southPrice" placeholder="South price(RSD):" [formControl]="form.controls.southPrice">
+            <mat-error *ngIf="form.controls.southPrice.touched && form.controls.southPrice.errors?.required">
+            This field can't be empty!</mat-error >
+        </mat-form-field>
+        <mat-form-field name="form-field-northPrice" [style.width.%]="9" style="margin-right: 1%;">
+            <mat-label for="northPrice">North price(RSD):</mat-label>
+            <input matInput id="northPrice" name="northPrice" placeholder="North price(RSD):" [formControl]="form.controls.northPrice">
+            <mat-error *ngIf="form.controls.northPrice.touched && form.controls.northPrice.errors?.required">
+            This field can't be empty!</mat-error >
+        </mat-form-field>
+        <mat-form-field name="form-field-vipPrice" [style.width.%]="9" style="margin-right: 1%;">
+            <mat-label for="vipPrice">VIP price(RSD):</mat-label>
+            <input matInput id="vipPrice" name="vipPrice" placeholder="VIP price(RSD):" [formControl]="form.controls.vipPrice">
+            <mat-error *ngIf="form.controls.vipPrice.touched && form.controls.vipPrice.errors?.required">
+            This field can't be empty!</mat-error >
+        </mat-form-field>
+        </div>
+
+        <mat-form-field [style.width.%]="60">
+            <mat-label>Choose start time:</mat-label>
+            <input matInput [value]="form.controls.startDate.value | date: 'yyyy-MM-dd hh:mm'" [ngxMatDatetimePicker]="picker1" placeholder="Choose start time" (dateChange)="onValueChanged('startDate',$event)">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker1 [showSpinners]=true [showSeconds]=false
+               [stepHour]=1 [stepMinute]=1 
+               [touchUi]=false [enableMeridian]=true 
+               [hideTime]=false>
+            </ngx-mat-datetime-picker>
+         </mat-form-field>
+
+         <mat-form-field [style.width.%]="60">
+            <mat-label>Choose end time:</mat-label>
+            <input matInput [value]="form.controls.endDate.value | date: 'yyyy-MM-dd hh:mm'" [ngxMatDatetimePicker]="picker2" placeholder="Choose end time" (dateChange)="onValueChanged('endDate',$event)">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker2 [showSpinners]=true [showSeconds]=false
+               [stepHour]=1 [stepMinute]=1 
+               [touchUi]=false [enableMeridian]=true 
+               [hideTime]=false>
+            </ngx-mat-datetime-picker>
+         </mat-form-field>
+
+         <mat-form-field [style.width.%]="60">
+            <mat-label>Choose deadlne for reservation:</mat-label>
+            <input matInput [value]="form.controls.deadline.value | date: 'yyyy-MM-dd hh:mm'" [ngxMatDatetimePicker]="picker3" placeholder="Choose deadline for reservation" (dateChange)="onValueChanged('deadline',$event)">
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker3 [showSpinners]=true [showSeconds]=false
+               [stepHour]=1 [stepMinute]=1 
+               [touchUi]=false [enableMeridian]=true 
+               [hideTime]=false>
+            </ngx-mat-datetime-picker>
+         </mat-form-field>
+    
+        <div style="margin-top: 20px;">
+            <button mat-raised-button color="primary" id="publish-button" name="publish-button" type="submit" [disabled]="!form.valid">Finish</button>
+        </div>
+
+    </form>
+</div>

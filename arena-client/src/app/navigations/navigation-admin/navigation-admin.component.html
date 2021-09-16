@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+
+    <mat-icon class="make-cursor" (click)="router.navigateByUrl('/admin')" [ngStyle]="{'color':'white'}">
+      book_online
+    </mat-icon>
+    <span class="make-cursor" (click)="router.navigateByUrl('/admin')" style="padding-left: 0.5%; font-size: medium;">Arena</span>
+    <span style="padding-left: 1%;"></span>
+    <span style="padding-left: 1%;">
+      <button (click)="router.navigate(['/admin/view-events']);" mat-button>Events</button>
+    </span>
+    <span style="padding-left: 1%;">
+      <button (click)="router.navigate(['/admin/create-event']);" mat-button>Add Event</button>
+    </span>
+    <span style="padding-left: 1%;">
+      <button (click)="router.navigate(['/admin/view-reservations']);" mat-button>Reservations</button>
+    </span>
+  
+    <span class="example-spacer" style="width: 75%"></span>
+    <a (click)="router.navigateByUrl('/admin/view-profile')" style="margin-left: 5%;">
+      <button mat-flat-button color="primary">
+        <mat-icon [ngStyle]="{'color':'white'}">
+          face
+        </mat-icon>
+      </button>
+    </a>
+    <a routerLink="/" style="margin-left: 1%;">
+      <button mat-flat-button color="primary">
+        <mat-icon (click)="logOutUser()" [ngStyle]="{'color':'white'}">
+          logout
+        </mat-icon>
+      </button>
+    </a>
+  </mat-toolbar>
+  

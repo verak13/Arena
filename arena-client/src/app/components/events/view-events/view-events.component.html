@@ -1,0 +1,19 @@
+<h1 class="mat-display-1;" style="text-align: center;  margin-top: 1%;">Events</h1>
+<mat-spinner style="margin-left: 49%; margin-bottom: 1%" [diameter]="30" *ngIf="loader"></mat-spinner>
+<mat-divider></mat-divider>
+<br><br>
+<div style="padding-left: 1%;padding-right: 1%">
+    <app-table style="font-size:2px;" [dataSource]="events.content" [columnsToDisplay]="['Name', 'Start', 'End', 'Reservation deadline', 'Parter', 'East', 'West', 'North', 'South', 'VIP', 
+    'details', 'reservationsByEvent', 'updateEvent']" (Delete)="onDelete($event)" 
+    (Details)="details($event)" (UpdateEvent)="updateEvent($event)" (ReservationsByEvent)="reservationsByEvent($event)" 
+    [columnsToIterate]="['name', 'startDate', 'endDate', 'deadline', 'parterPrice', 'eastPrice', 'westPrice', 'northPrice', 'southPrice', 'vipPrice']"></app-table>
+
+    <app-pagination [pageSize]="pageSize"
+                [totalItems]="events.totalElements"
+                [totalPages]="events.totalPages"
+                [currentPage]="events.number"
+                (ChangePage)="onPagination($event)"
+    ></app-pagination>
+    
+</div>
+

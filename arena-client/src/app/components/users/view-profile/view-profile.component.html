@@ -1,0 +1,65 @@
+<h1 class="mat-display-1;" style="text-align: center;  margin-top: 1%;">Profile</h1>
+<mat-divider></mat-divider>
+
+<div style="display: block; text-align: center; margin: 5%;">
+  <br>
+
+  <form [formGroup]="form"  (ngSubmit)="submit()" style="width: 100%;">
+    <div>
+      <mat-form-field >
+        <mat-label for="email">Email:</mat-label>
+        <input matInput type="email" id="email" name="email" placeholder="email" [formControl]="form.controls.email"
+        disabled>
+      </mat-form-field>
+    </div>
+
+
+    <div>
+      <mat-form-field >
+        <mat-label for="fistName">First name:</mat-label>
+        <input matInput type="firstName" id="firstName" name="firstName" placeholder="firstName" [formControl]="form.controls.firstName">
+        <mat-error *ngIf="form.controls.firstName.touched && form.controls.firstName.errors?.required">
+          This field can't be empty!</mat-error >
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field >
+        <mat-label for="lastName">Last name:</mat-label>
+        <input matInput type="lastName" id="lastName" name="lastName" placeholder="lastName" [formControl]="form.controls.lastName">
+        <mat-error *ngIf="form.controls.lastName.touched && form.controls.lastName.errors?.required">
+          This field can't be empty!</mat-error >
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label for="password">New password:</mat-label>
+        <input matInput  type="password" id="password" name="password" placeholder="New password" [formControl]="form.controls.password">
+      </mat-form-field>
+      <mat-error style="font-size: smaller; margin-right: 10%" *ngIf="form.hasError('testLength')">
+        New password min length is 8!</mat-error >
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label for="passwordConfirm">Confirm password:</mat-label>
+        <input matInput  type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm password"
+               [formControl]="form.controls.passwordConfirm" >
+
+      </mat-form-field>
+    </div>
+
+    <mat-error *ngIf="form.hasError('testEqual')">
+      Passwords don't mach!</mat-error >
+
+
+    <div>
+      <button mat-raised-button type="submit" id="edit-profile-btn"
+              [disabled]="form.hasError('testEqual') ||
+              form.hasError('testLength') || form.controls.firstName.errors?.required ||
+              form.controls.email.errors?.required ||
+              form.controls.lastName.errors?.required">Edit</button>
+    </div>
+  </form>
+</div>

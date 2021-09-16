@@ -1,0 +1,124 @@
+
+.seat {
+    color:rgb(194, 192, 192);
+    margin-top:8px;
+    margin-left: 8px;
+    background: rgba(74, 78, 74, 0);
+    width: 6px; 
+    height: 6px; 
+    text-align: bottom right;
+    font-size: xx-small;
+    border-radius: 40%;
+    border-color: teal;
+    border-style: solid;
+    border-width: 1.5pt;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.seat:hover {
+    background: rgba(255, 255, 255, 0.849);
+    border-color: rgba(181, 247, 232, 0.562) !important;
+}
+
+.selected {
+    background: rgba(209, 229, 225, 0.788) !important;
+    border-color: rgba(148, 238, 217, 0.37) !important;
+}
+
+.occupied {
+    background: rgba(221, 32, 32, 0.726);
+    pointer-events:none;
+    border-color:rgba(221, 32, 32, 0.726) !important;
+}
+
+.occupiedbyme {
+    background: rgba(8, 240, 20, 0.548);
+    pointer-events:all !important;
+    border-color:rgba(8, 240, 20, 0.548) !important;
+}
+
+.disabledSeat {
+    background: rgba(74, 78, 74, 0) !important;
+    pointer-events:none !important;
+    border-color: rgba(74, 78, 74, 0) !important;
+}
+
+.parter {
+    border-color:rgba(9, 165, 165, 0.7) 
+}
+.west {
+    border-color:rgb(9, 104, 48, 0.7)
+}
+.east {
+    border-color:rgb(7, 18, 167, 0.6)
+}
+.south {
+    border-color:rgb(217, 219, 86, 0.5) 
+}
+.north {
+    border-color:rgb(235, 27, 155, 0.7) 
+}
+.vip {
+    border-color:rgb(255, 255, 255, 0.5) 
+}
+
+::ng-deep .mat-tooltip {
+    font-size: 14px;
+  }
+
+.tab4 {
+    margin-left: 9%;
+}
+.tab5 {
+    margin-left: 10%;
+}
+.tab6 {
+    margin-left: 11%;
+}
+.tab7 {
+    margin-left: 12%;
+}
+.tab3 {
+    margin-left: 8%;
+}
+.tab2 {
+    margin-left: 7%;
+}
+.tab1 {
+    margin-left: 6%;
+}
+.mid {
+    margin-right:17%;
+}
+.parterMid {
+    margin-right:18%;
+}
+.tabColumns1 {
+    margin-right:12%;
+}
+.tabColumns2 {
+    margin-right:11%;
+}
+.tabColumns3 {
+    margin-right:8%;
+}
+.tabColumns4 {
+    margin-right:5%;
+}
+.tabColumns5 {
+    margin-right:2%;
+}
+
+.entrance {
+    margin-right:3.5%;
+}
+.stairs1 {
+    margin-right:1%;
+}
+.stairs2 {
+    margin-right:1%;
+}
+
+.middle {
+    margin-bottom:1%;
+}

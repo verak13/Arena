@@ -1,0 +1,20 @@
+table {
+    width: 100%;
+    background-color: transparent;
+  }
+  th.mat-header-cell{
+    text-align: center !important;
+    font-size: medium;
+    padding-right: 3px;
+  }
+  td.mat-cell{
+    text-align: center !important;
+    font-size: small;
+    padding-right: 3px;
+  }
+  
+  ::ng-deep .mat-sort-header-container {
+    display:flex;
+    justify-content:center;
+  }
+  

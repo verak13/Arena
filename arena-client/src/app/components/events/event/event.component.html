@@ -1,0 +1,66 @@
+<h1 class="mat-display-1;" style="text-align: center;  margin-top: 1%;">{{event.name}}</h1>
+<mat-spinner style="margin-left: 49%; margin-bottom: 1%" [diameter]="30" *ngIf="loader"></mat-spinner>
+<mat-divider></mat-divider>
+
+<br><br>
+<div style="display: inline;">
+<div style="text-align: left; font-size: 12pt; margin-left: 2%; margin-right: 1%; width: 15%; float:left;">
+    <div><i>{{event.description}}</i></div>
+    <br>
+    <div><b>Price: </b>
+        <br>Parter - {{event.parterPrice | currency:'RSD'}}
+        <br>East - {{event.eastPrice | currency:'RSD'}}
+        <br>West - {{event.westPrice | currency:'RSD'}}
+        <br>North - {{event.northPrice | currency:'RSD'}}
+        <br>South - {{event.southPrice | currency:'RSD'}}
+        <br>VIP - {{event.vipPrice | currency:'RSD'}}
+    </div>
+    <br>
+    <div><b>Start: </b>{{event.startDate | date:'fullDate'}} {{event.deadline | date:'shortTime'}}</div>
+    <div><b>End: </b>{{event.endDate | date:'fullDate'}} {{event.deadline | date:'shortTime'}}</div>
+    <br>
+    <div style="color: gray; font-size: small;">You can make and cancel reservations until {{event.deadline | date:'fullDate'}} {{event.deadline | date:'shortTime'}}</div>
+    <div style="color: gray; font-size: small;">You can only make 4 reservations for one event.</div>
+</div>
+<div style="text-align: center; margin-right: 0%; margin-left: 0%; margin-bottom: 2%; width: 82%; float: right;">
+<div *ngFor="let group of rows, index as row" style="display: flex" 
+        [ngClass]="{'tab7': row==0 || row==39, 'tab6': row==1 || row==38, 
+                    'tab5': row==2 || row==37, 'tab4': row==3 || row==36,
+                    'tab3': row==4 || row==35, 'tab2': row==5 || row==34,
+                    'tab1': row!=0&&row!=1&&row!=2&&row!=3&&row!=4&&row!=5&&row!=39&&row!=38&&row!=37&&row!=36&&row!=35&&row!=34}">
+        <div id="seat.id" *ngFor="let seat of group, index as i" 
+        [ngClass]="{'seat': true, 'occupiedbyme': seat.occupiedByMe, 'occupied': seat.occupied, 'selected': isSelected(seat.number), 'disabledSeat': isDisabledSeat(seat.number), 
+                    'parter': isParter(seat.number), 'west': isWest(seat.number), 'east': isEast(seat.number), 'north': isNorth(seat.number), 'south': isSouth(seat.number), 'vip': isVip(seat.number),
+                    'mid': i==40&&row!=0&&row!=1&&row!=2&&row!=3&&row!=4&&row!=5&&row!=39&&row!=38&&row!=37&&row!=36&&row!=35&&row!=34,
+                    'parterMid': i==40&&row!=0&&row!=1&&row!=2&&row!=3&&row!=4&&row!=5&&row!=6&&row!=7&&row!=8&&row!=39&&row!=38&&row!=37&&row!=36&&row!=35&&row!=34&&row!=33&&row!=32&&row!=31,
+                    'stairs2': i==10&&row!=0&&row!=1&&row!=2&&row!=3&&row!=4&&row!=5&&row!=6&&row!=7&&row!=8&&row!=39&&row!=38&&row!=37&&row!=36&&row!=35&&row!=34&&row!=33&&row!=32&&row!=31,
+                    'tabColumns1': i==40&&(row==34||row==5),
+                    'tabColumns2': i==40&&(row==35||row==4),
+                    'tabColumns3': i==36&&(row==36||row==3),
+                    'tabColumns4': i==36&&(row==37||row==2),
+                    'tabColumns5': i==40&&(row==38||row==1),
+                    'entrance': (i==23&&(row==36||row==3)) || (i==22&&(row==37||row==2)) || (i==5&&(row==37||row==2)) || (i==6&&(row==36||row==3)),
+                    'stairs1': (i==23 && (row==0||row==39)) 
+                        || (i==29 && (row==6||row==7||row==8||row==33||row==32||row==31))
+                        || (i==24 && (row==1||row==38))
+                        || (i==27 && (row==4||row==35))
+                        || (i==28 && (row==5||row==34))
+                        || (i==10 && (row==6||row==7||row==8||row==33||row==32||row==31))
+                        || (i==9 && (row==5||row==34))
+                        || (i==8 && (row==4||row==35))
+                        || (i==5 && (row==1||row==38))
+                        || (i==4 && (row==0||row==39)),
+                    'middle': row==19
+                    }"
+        (click)="onClick(seat)" [matTooltip]="getToolTipData(seat)" matTooltipPosition="right">
+            
+        </div>
+    </div>
+    <div *ngIf="role ==='user'" style="margin-top: 3%; margin-bottom: 3%; display:block; text-align: center;">
+        <button mat-raised-button color="primary" id="make" style="margin-right: 10px;" [disabled]="makeDisabled" (click)="makeReservation()">Make Reservations</button>
+        <button mat-raised-button color="primary" id="cancel" [disabled]="cancelDisabled" (click)="cancelReservation()">Cancel Reservation</button>
+    </div>
+</div>
+
+</div>
+
